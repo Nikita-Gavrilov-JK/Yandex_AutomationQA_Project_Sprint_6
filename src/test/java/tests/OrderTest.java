@@ -48,8 +48,8 @@ public class OrderTest {
 
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
-        //driver = new EdgeDriver();
+        //driver = new ChromeDriver();
+        driver = new EdgeDriver();
         driver.get("https://qa-scooter.praktikum-services.ru/");
     }
 

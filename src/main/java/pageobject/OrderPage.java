@@ -3,6 +3,9 @@ package pageobject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class OrderPage {
     private WebDriver driver;
@@ -47,4 +50,28 @@ public class OrderPage {
     public boolean isOrderDisplayed() {
         return driver.findElement(succsesful).isDisplayed();
     }
+
+    public void clickNextButton(){
+        driver.findElement(buttonNext).click();
+    }
+
+    public int getNumberOfErrorFields() {
+        List<WebElement> errorFields = driver.findElements(By.xpath("//div[contains(@class,'Input_Error') and not(text()='Тут что-то не так')]"));
+
+        int visibleErrorsCount = 0;
+
+        for (WebElement error : errorFields) {
+            if (error.isDisplayed()) {
+                visibleErrorsCount++;
+            }
+        }
+
+        List<WebElement> metroErrors = driver.findElements(By.className("Order_MetroError__1BtZb"));
+        if (!metroErrors.isEmpty() && metroErrors.get(0).isDisplayed()) {
+            visibleErrorsCount++;
+        }
+
+        return visibleErrorsCount;
+    }
+
 }

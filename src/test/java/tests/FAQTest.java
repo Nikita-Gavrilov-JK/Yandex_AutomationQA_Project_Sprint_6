@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import pageobject.MainPage;
 import java.util.Arrays;
 import java.util.Collection;
@@ -40,7 +41,10 @@ public class FAQTest {
 
     @Before
     public void setUp() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
+        driver = new ChromeDriver(options);
+        driver.manage().deleteAllCookies();
         driver.get("https://qa-scooter.praktikum-services.ru/");
     }
 
